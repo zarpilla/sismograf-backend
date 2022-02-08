@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resilience_levels",
+  "info": {
+    "singularName": "resilience-level",
+    "pluralName": "resilience-levels",
+    "displayName": "Resilience Level",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "value": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "principle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::principle.principle",
+      "inversedBy": "resilience_levels"
+    }
+  }
+}

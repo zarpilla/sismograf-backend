@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patterns",
+  "info": {
+    "singularName": "pattern",
+    "pluralName": "patterns",
+    "displayName": "Pattern"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "order": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "principle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::principle.principle",
+      "inversedBy": "patterns"
+    },
+    "indicators": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::indicator.indicator",
+      "mappedBy": "pattern"
+    }
+  }
+}

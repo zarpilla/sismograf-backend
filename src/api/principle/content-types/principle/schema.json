@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "principles",
+  "info": {
+    "singularName": "principle",
+    "pluralName": "principles",
+    "displayName": "Principle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "principle_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::principle-type.principle-type"
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "domain": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::domain.domain",
+      "inversedBy": "principles"
+    },
+    "patterns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pattern.pattern",
+      "mappedBy": "principle"
+    },
+    "resilience_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resilience-level.resilience-level",
+      "mappedBy": "principle"
+    }
+  }
+}
