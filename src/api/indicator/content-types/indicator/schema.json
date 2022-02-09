@@ -38,17 +38,21 @@
       "target": "api::template.template",
       "inversedBy": "indicators"
     },
-    "indicator_options": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::indicator-option.indicator-option",
-      "mappedBy": "indicator"
-    },
     "pattern": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::pattern.pattern",
       "inversedBy": "indicators"
+    },
+    "indicator_options": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.indicator-option"
     }
   }
 }

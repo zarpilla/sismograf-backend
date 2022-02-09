@@ -39,12 +39,6 @@
         }
       },
       "type": "richtext"
-    },
-    "principle": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::principle.principle",
-      "inversedBy": "resilience_levels"
     }
   }
 }

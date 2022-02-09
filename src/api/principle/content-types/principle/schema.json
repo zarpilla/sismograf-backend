@@ -49,11 +49,15 @@
       "target": "api::pattern.pattern",
       "mappedBy": "principle"
     },
-    "resilience_levels": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::resilience-level.resilience-level",
-      "mappedBy": "principle"
+    "principle_levels": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.principle-level"
     }
   }
 }

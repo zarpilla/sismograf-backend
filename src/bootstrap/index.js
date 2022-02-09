@@ -21,12 +21,13 @@ async function isFirstRun() {
 
 async function importData() {
 
-    const shouldImportSeedData = await isFirstRun();
-    if (!shouldImportSeedData) {
-        return
-    }
-
     try {
+
+        const shouldImportSeedData = await isFirstRun();
+        if (!shouldImportSeedData) {
+            return
+        }
+        
         const records = await readCSV('impsismo.csv');
         const imported = []
         let domainName = ''
@@ -43,8 +44,11 @@ async function importData() {
         await strapi.db.query('api::principle-type.principle-type').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::pattern.pattern').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::indicator.indicator').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::indicator-option.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
-
+        // await strapi.db.query('api::indicator-option.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
+        await strapi.db.query('api::resilience-level.resilience-level').deleteMany({ where: { id: { $gt: 0 } } })
+        await strapi.query('components.principle-level').deleteMany({ where: { id: { $gt: 0 } } })
+        await strapi.query('components.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
+        
         const templateData = { data: { locale: locale, publishedAt: new Date(), name: 'IMPSISMO' } }
         const templateEntry = await strapi.query('api::template.template').create(templateData);
         const levels = ['Resistencia', 'Determinación', 'Orden', 'Progreso', 'Sostenibilidad', 'Restauración', 'Reconciliación', 'Regeneración']
@@ -57,6 +61,7 @@ async function importData() {
         await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: 'VOLUNTAD' } });
         
         for (var i = 0; i < records.length; i++) {
+            
             const record = records[i]
             if (record.domain !== domainName && record.domain !== '') {
                 const domainData = { data: { locale: locale, publishedAt: new Date(), name: record.domain, description: record.domain_desc } }
@@ -66,19 +71,27 @@ async function importData() {
             }
 
             if (record.principle !== principleName && record.principle !== '') {
-                const principleData = { data: { locale: locale, publishedAt: new Date(), name: record.principle, description: record.principle_desc, domain: domainId, principle_type: principleType.id + parseInt(record.principle_type) - 1 } }
-                const principleEntry = await strapi.query('api::principle.principle').create(principleData);                
+                const resilience_levels = []
+                let level = await strapi.query('components.principle-level').create({ data: { name: record.r1, value: 1 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r2, value: 2 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r3, value: 3 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r4, value: 4 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r5, value: 5 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r6, value: 6 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r7, value: 7 } })                
+                resilience_levels.push(level.id)
+                level = await strapi.query('components.principle-level').create({ data: { name: record.r8, value: 8 } })                
+                resilience_levels.push(level.id)
+                const principleData = { data: { locale: locale, publishedAt: new Date(), name: record.principle, description: record.principle_desc, principle_levels: resilience_levels, domain: domainId, principle_type: principleType.id + parseInt(record.principle_type) - 1 } }                
+                const principleEntry = await strapi.query('api::principle.principle').create(principleData);
                 principleId = principleEntry.id
                 principleName = record.principle
-
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r1, value: 1, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r2, value: 2, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r3, value: 3, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r4, value: 4, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r5, value: 5, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r6, value: 6, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r7, value: 7, principle: principleId } });
-                await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: record.r8, value: 8, principle: principleId } });
 
             }
             if (record.pattern !== patternName && record.pattern !== '') {
@@ -91,23 +104,29 @@ async function importData() {
             }
 
             if (record.indicator) {
-                const indicatorData = { data: { locale: locale, publishedAt: new Date(), question: record.indicator, pattern: patternId, templates: [templateEntry.id], max: record.max } }
-                const indicatorEntry = await strapi.query('api::indicator.indicator').create(indicatorData);
+                const options = []
+                let option = await strapi.query('components.indicator-option').create({ data: { name: record.o1, value: 1 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o2, value: 2 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o3, value: 3 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o4, value: 4 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o5, value: 5 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o6, value: 6 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o7, value: 7 } })                
+                options.push(option.id)
+                option = await strapi.query('components.indicator-option').create({ data: { name: record.o8, value: 8 } })                
+                options.push(option.id)
 
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o1, value: 1, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o2, value: 2, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o3, value: 3, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o4, value: 4, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o5, value: 5, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o6, value: 6, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o7, value: 7, indicator: indicatorEntry.id } });
-                await strapi.query('api::indicator-option.indicator-option').create( { data: { locale: locale, name: record.o8, value: 8, indicator: indicatorEntry.id } });
+                // console.log('options', options)
 
-            }
-            
-            // const ret = await createTrivagoRecord(type, load, record)
-            // imported.push(ret)
-            // console.log('records', record)
+                const indicatorData = { data: { locale: locale, publishedAt: new Date(), question: record.indicator, pattern: patternId, templates: [templateEntry.id], max: record.max, indicator_options: options } }
+                const indicatorEntry = await strapi.query('api::indicator.indicator').create(indicatorData);                
+            }            
         }
         return {
             success: true,

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_components_values",
+  "info": {
+    "displayName": "Values",
+    "icon": "atom"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "integer"
+    }
+  }
+}

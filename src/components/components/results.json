@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_components_results",
+  "info": {
+    "displayName": "Results",
+    "icon": "asterisk",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "indicator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::indicator.indicator"
+    },
+    "value": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_components_principle_levels",
+  "info": {
+    "displayName": "Principle Level",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_comments",
+  "info": {
+    "displayName": "Comments",
+    "icon": "broadcast-tower"
+  },
+  "options": {},
+  "attributes": {
+    "indicator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::indicator.indicator"
+    },
+    "comment": {
+      "type": "richtext"
+    }
+  }
+}

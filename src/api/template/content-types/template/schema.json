@@ -4,7 +4,8 @@
   "info": {
     "singularName": "template",
     "pluralName": "templates",
-    "displayName": "Template"
+    "displayName": "Template",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -36,6 +37,12 @@
       "relation": "manyToMany",
       "target": "api::indicator.indicator",
       "mappedBy": "templates"
+    },
+    "labels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::label.label",
+      "inversedBy": "templates"
     }
   }
 }

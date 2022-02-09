@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "analyses",
+  "info": {
+    "singularName": "analysis",
+    "pluralName": "analyses",
+    "displayName": "Analysis",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::template.template"
+    },
+    "results": {
+      "displayName": "Results",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.results"
+    },
+    "comments": {
+      "displayName": "Comments",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.comments"
+    },
+    "labels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::label.label"
+    }
+  }
+}

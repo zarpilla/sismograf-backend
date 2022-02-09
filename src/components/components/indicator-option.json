@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_components_indicator_options",
+  "info": {
+    "displayName": "Indicator Option",
+    "icon": "arrow-alt-circle-right"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "integer"
+    }
+  }
+}
