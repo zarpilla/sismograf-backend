@@ -1,6 +1,6 @@
 # 🚀 SISMÒGRAF BACKEND
 
-![Alt text](/edr.png?raw=true "Sismògraf")
+![Sismògraf](https://github.com/zarpilla/sismograf-backend/blob/main/erd.png "Sismògraf")
 
 ## 🚀 Getting started with Strapi
 
