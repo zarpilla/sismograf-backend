@@ -1,6 +1,6 @@
 # 🚀 SISMÒGRAF BACKEND
 
-![Alt text](/edr.png "Sismògraf")
+![Alt text](/edr.png?raw=true "Sismògraf")
 
 ## 🚀 Getting started with Strapi
 
