@@ -40,6 +40,10 @@ module.exports = createCoreController('api::template.template', ({ strapi }) => 
         const domains = await strapi.service('api::domain.domain').find({            
             populate:  ['principles', 'principles.patterns', 'principles.principle_levels']
         });
+
+        const levels = await strapi.service('api::resilience-level.resilience-level').find({            
+            populate:  ['*']
+        });
         
         domains.results.forEach(d => {
             d.principles.forEach(pr => {
@@ -55,6 +59,7 @@ module.exports = createCoreController('api::template.template', ({ strapi }) => 
         })
 
         template.domains = domains.results
+        template.levels = levels.results
         delete template.indicators
 
         const sanitizedEntity = await this.sanitizeOutput(template, ctx);
