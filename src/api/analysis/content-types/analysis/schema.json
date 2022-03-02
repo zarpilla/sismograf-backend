@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -29,10 +29,34 @@
       "repeatable": true,
       "component": "components.comments"
     },
+    "language": {
+      "type": "string"
+    },
+    "uid": {
+      "type": "uid"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
     "labels": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::label.label"
+    },
+    "parent": {
+      "type": "string"
     }
   }
 }
