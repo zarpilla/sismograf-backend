@@ -37,6 +37,14 @@
       "relation": "oneToMany",
       "target": "api::principle.principle",
       "mappedBy": "domain"
+    },
+    "code": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

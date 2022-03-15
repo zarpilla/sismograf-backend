@@ -56,6 +56,23 @@ async function importSeedData() {
         "api::resilience-level.resilience-level": ["find", "findOne"],
         "api::analysis.analysis": ["create", "update", "delete", "find", "findOne"],
         "api::label.label": ["find", "findOne"],
+        "api::label-category.label-category": ["find", "findOne"],
+      }
+    );
+
+    await setPermissions("public",       
+      {
+        "api::template.template": ["find", "findOne", "findOneWithIndicators"],
+        "api::indicator.indicator": ["find", "findOne"],
+        "api::pattern.pattern": ["find", "findOne"],
+        "api::indicator-option.indicator-option": ["find", "findOne"],
+        "api::domain.domain": ["find", "findOne"],
+        "api::principle.principle": ["find", "findOne"],
+        "api::principle-type.principle-type": ["find", "findOne"],
+        "api::resilience-level.resilience-level": ["find", "findOne"],
+        "api::analysis.analysis": ["create", "update", "delete", "find", "findOne"],
+        "api::label.label": ["find", "findOne"],
+        "api::label-category.label-category": ["find", "findOne"],
       }
     );
 }

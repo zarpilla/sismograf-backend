@@ -58,6 +58,14 @@
         }
       },
       "component": "components.principle-level"
+    },
+    "code": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

@@ -42,7 +42,27 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::label.label",
+      "mappedBy": "templates"
+    },
+    "label_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::label-category.label-category",
+      "mappedBy": "templates"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "templates"
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

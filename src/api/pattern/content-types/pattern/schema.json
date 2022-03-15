@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pattern",
     "pluralName": "patterns",
-    "displayName": "Pattern"
+    "displayName": "Pattern",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -42,6 +43,14 @@
       "relation": "oneToMany",
       "target": "api::indicator.indicator",
       "mappedBy": "pattern"
+    },
+    "code": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

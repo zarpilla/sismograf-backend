@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "label_categories",
+  "info": {
+    "singularName": "label-category",
+    "pluralName": "label-categories",
+    "displayName": "Label Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "templates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::template.template",
+      "inversedBy": "label_categories"
+    }
+  }
+}
