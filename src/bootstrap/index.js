@@ -35,7 +35,7 @@ async function importData() {
         await strapi.db.query('plugin::i18n.locale').deleteMany({ where: { id: { $gt: 1 } } })        
         await strapi.db.query('plugin::i18n.locale').create({ data: { code: 'ca', isDefault: false, name: 'Català (ca)' } })
         await strapi.db.query('plugin::i18n.locale').create({ data: { code: 'es', isDefault: true, name: 'Spanish (es)' } })
-
+/*
         await strapi.db.query('api::template.template').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::domain.domain').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::principle.principle').deleteMany({ where: { id: { $gt: 0 } } })
@@ -74,12 +74,10 @@ async function importData() {
                 await strapi.query('api::indicator.indicator').update({ where: { id: ind.id }, data: { templates: [template2.id, template3.id]} })
             }
         })
-        
+    */        
         
         return {
             success: true,
-            imported1 : imported1.length,
-            imported2 : imported2.length,
             // records
         }
     }

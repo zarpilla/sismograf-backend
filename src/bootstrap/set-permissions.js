@@ -46,7 +46,7 @@ async function setPermissions(roleType, newPermissions) {
 async function importSeedData() {    
     await setPermissions("authenticated",       
       {
-        "api::template.template": ["find", "findOne", "findOneWithIndicators"],
+        "api::template.template": ["find", "findOne", "findOneWithIndicators", "findUserTemplates", "import"],
         "api::indicator.indicator": ["find", "findOne"],
         "api::pattern.pattern": ["find", "findOne"],
         "api::indicator-option.indicator-option": ["find", "findOne"],
@@ -54,15 +54,17 @@ async function importSeedData() {
         "api::principle.principle": ["find", "findOne"],
         "api::principle-type.principle-type": ["find", "findOne"],
         "api::resilience-level.resilience-level": ["find", "findOne"],
-        "api::analysis.analysis": ["create", "update", "delete", "find", "findOne"],
+        "api::analysis.analysis": ["create", "update", "delete", "find", "findOne", "findOneWithResults", "findWithResults"],
         "api::label.label": ["find", "findOne"],
-        "api::label-category.label-category": ["find", "findOne"],
+        "api::label-category.label-category": ["find", "findOne"],        
+        "api::organization.organization": ["find", "findOne"],
+        "api::questionnaire.questionnaire": ["find", "findOne"],
       }
     );
 
     await setPermissions("public",       
       {
-        "api::template.template": ["find", "findOne", "findOneWithIndicators"],
+        "api::template.template": ["find", "findOne", "findOneWithIndicators", "findUserTemplates", "import"],
         "api::indicator.indicator": ["find", "findOne"],
         "api::pattern.pattern": ["find", "findOne"],
         "api::indicator-option.indicator-option": ["find", "findOne"],
@@ -70,9 +72,11 @@ async function importSeedData() {
         "api::principle.principle": ["find", "findOne"],
         "api::principle-type.principle-type": ["find", "findOne"],
         "api::resilience-level.resilience-level": ["find", "findOne"],
-        "api::analysis.analysis": ["create", "update", "delete", "find", "findOne"],
+        "api::analysis.analysis": ["create", "update", "delete", "find", "findOne", "findOneWithResults", "findWithResults"],
         "api::label.label": ["find", "findOne"],
         "api::label-category.label-category": ["find", "findOne"],
+        "api::organization.organization": ["find", "findOne"],
+        "api::questionnaire.questionnaire": ["find", "findOne"],
       }
     );
 }

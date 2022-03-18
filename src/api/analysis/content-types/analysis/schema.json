@@ -57,6 +57,15 @@
     },
     "parent": {
       "type": "string"
+    },
+    "resilienceLevel": {
+      "type": "decimal"
+    },
+    "questionnaire": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::questionnaire.questionnaire",
+      "inversedBy": "analyses"
     }
   }
 }

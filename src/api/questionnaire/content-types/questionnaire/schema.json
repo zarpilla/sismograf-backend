@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questionnaires",
+  "info": {
+    "singularName": "questionnaire",
+    "pluralName": "questionnaires",
+    "displayName": "Questionnaire",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::organization.organization",
+      "inversedBy": "questionnaires"
+    },
+    "template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::template.template"
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "analyses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::analysis.analysis",
+      "mappedBy": "questionnaire"
+    }
+  }
+}
