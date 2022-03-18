@@ -31,11 +31,11 @@ async function importData() {
         if (!shouldImportSeedData) {
             return
         }
-
+/*
         await strapi.db.query('plugin::i18n.locale').deleteMany({ where: { id: { $gt: 1 } } })        
         await strapi.db.query('plugin::i18n.locale').create({ data: { code: 'ca', isDefault: false, name: 'Català (ca)' } })
         await strapi.db.query('plugin::i18n.locale').create({ data: { code: 'es', isDefault: true, name: 'Spanish (es)' } })
-/*
+
         await strapi.db.query('api::template.template').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::domain.domain').deleteMany({ where: { id: { $gt: 0 } } })
         await strapi.db.query('api::principle.principle').deleteMany({ where: { id: { $gt: 0 } } })
