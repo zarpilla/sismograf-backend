@@ -19,6 +19,7 @@ const transformAnalysisResults = async (analyses) => {
           r.questionnaireName = analysis.questionnaire?.name;
           r.domainId = r.indicator.pattern.principle.domain.id;
           r.domainName = r.indicator.pattern.principle.domain.name;
+          r.domainDescription = r.indicator.pattern.principle.domain.description;
           r.principleId = r.indicator.pattern.principle.id;
           r.principleName = r.indicator.pattern.principle.name;
           r.patternId = r.indicator.pattern.id;
