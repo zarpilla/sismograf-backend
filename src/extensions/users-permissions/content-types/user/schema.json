@@ -68,6 +68,12 @@
       "relation": "manyToMany",
       "target": "api::template.template",
       "mappedBy": "users"
+    },
+    "questionnaires": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::questionnaire.questionnaire",
+      "inversedBy": "users"
     }
   }
 }

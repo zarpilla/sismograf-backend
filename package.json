@@ -18,7 +18,8 @@
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "mysql": "2.18.1"
+    "mysql": "2.18.1",
+    "webpack": "^5.70.0"
   },
   "author": {
     "name": "A Strapi developer"
