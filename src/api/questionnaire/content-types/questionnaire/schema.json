@@ -71,6 +71,23 @@
       "relation": "oneToMany",
       "target": "api::analysis.analysis",
       "mappedBy": "questionnaire"
+    },
+    "showEmail": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": true
+    },
+    "showOrganization": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean"
     }
   }
 }
