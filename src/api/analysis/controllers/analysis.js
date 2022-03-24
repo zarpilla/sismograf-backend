@@ -166,6 +166,74 @@ module.exports = createCoreController(
         g2 = analysis.results;
       }
 
+      if (group1 === "user") {
+        if ((ctx.state && ctx.state.auth && ctx.state.auth.strategy && ctx.state.auth.strategy.name === 'users-permissions' && ctx.state.auth.credentials && ctx.state.auth.credentials.id === parseInt(identifier1)) || (
+          ctx.state && ctx.state.auth && ctx.state.auth.strategy && ctx.state.auth.strategy.name === 'api-token'
+        )) {
+          const analysis = await strapi.service("api::analysis.analysis").find({
+            filters: {
+              questionnaire: {
+                users: {
+                  id: identifier1
+                },
+              },
+            },
+            populate: populate,
+            locale: ctx.locale,
+          });
+  
+          g1 = analysis.results;
+        }        
+      }
+
+      if (group2 === "user") {
+        if ((ctx.state && ctx.state.auth && ctx.state.auth.strategy && ctx.state.auth.strategy.name === 'users-permissions' && ctx.state.auth.credentials && ctx.state.auth.credentials.id === parseInt(identifier2)) || (
+          ctx.state && ctx.state.auth && ctx.state.auth.strategy && ctx.state.auth.strategy.name === 'api-token'
+
+        )) {
+          const analysis = await strapi.service("api::analysis.analysis").find({
+            filters: {
+              questionnaire: {
+                users: {
+                  id: identifier2
+                },
+              },
+            },
+            populate: populate,
+            locale: ctx.locale,
+          });
+  
+          g2 = analysis.results;
+        }        
+      }
+
+      if (group1 === "ruid") {
+        const analysis = await strapi.service("api::analysis.analysis").find({
+          filters: {
+            uid: {
+              $eq: identifier1,
+            },
+          },
+          populate: populate,
+          locale: ctx.locale,
+        });
+
+        g1 = analysis.results;
+      }
+      if (group2 === "ruid") {
+        const analysis = await strapi.service("api::analysis.analysis").find({
+          filters: {
+            uid: {
+              $eq: identifier2,
+            },
+          },
+          populate: populate,
+          locale: ctx.locale,
+        });
+
+        g2 = analysis.results;
+      }
+
       if (group1 === "questionnaire") {
         const analysis = await strapi.service("api::analysis.analysis").find({
           filters: {
@@ -183,7 +251,7 @@ module.exports = createCoreController(
         const analysis = await strapi.service("api::analysis.analysis").find({
           filters: {
             questionnaire: {
-              id: identifier1,
+              id: identifier2,
             },
           },
           populate: populate,
