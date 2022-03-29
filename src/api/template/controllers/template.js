@@ -266,47 +266,48 @@ module.exports = createCoreController(
 
     async import(ctx) {
 
+      /*
+      await strapi.db.query('api::template.template').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::domain.domain').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::principle.principle').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::principle-type.principle-type').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::pattern.pattern').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::indicator.indicator').deleteMany({ where: { id: { $gt: 0 } } })
+      // await strapi.db.query('api::indicator-option.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.db.query('api::resilience-level.resilience-level').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.query('components.principle-level').deleteMany({ where: { id: { $gt: 0 } } })
+      await strapi.query('components.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
 
-        await strapi.db.query('api::template.template').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::domain.domain').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::principle.principle').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::principle-type.principle-type').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::pattern.pattern').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::indicator.indicator').deleteMany({ where: { id: { $gt: 0 } } })
-        // await strapi.db.query('api::indicator-option.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.db.query('api::resilience-level.resilience-level').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.query('components.principle-level').deleteMany({ where: { id: { $gt: 0 } } })
-        await strapi.query('components.indicator-option').deleteMany({ where: { id: { $gt: 0 } } })
+      
+      const records1 = await readCSV('impsismo.csv');
+      const template1 = await createTemplate('IMPSISMO', 'impsismo', 'es')
+      const imported1 = await importRecords(template1, records1, 'es')
+      const records2 = await readCSV('larural.csv');
+      const template2 = await createTemplate('La Rural Collserola (ORGANITZACIÓ)', 'la-rural-collserola-org', 'ca')
+      const imported2 = await importRecords(template2, records2, 'ca')
+      const template3 = await createTemplate('La Rural Collserola (INDIVIDUAL)', 'la-rural-collserola-ind', 'ca')
 
-        
-        const records1 = await readCSV('impsismo.csv');
-        const template1 = await createTemplate('IMPSISMO', 'impsismo', 'es')
-        const imported1 = await importRecords(template1, records1, 'es')
-        console.log('x 0')
-        const records2 = await readCSV('larural.csv');
-        const template2 = await createTemplate('La Rural Collserola (ORGANITZACIÓ)', 'la-rural-collserola-org', 'ca')
-        console.log('x 1')
-        const imported2 = await importRecords(template2, records2, 'ca')
-        console.log('x 2')
-        const template3 = await createTemplate('La Rural Collserola (INDIVIDUAL)', 'la-rural-collserola-ind', 'ca')
-        console.log('x 3')
+      // const template3 = await createTemplate('La Rural Collserola (INDIVIDUAL)', 'la-rural-collserola-ind', 'ca')
 
-        // const template3 = await createTemplate('La Rural Collserola (INDIVIDUAL)', 'la-rural-collserola-ind', 'ca')
+      const template2WithInd = await strapi.query('api::template.template').findOne({
+          where: { id: template2.id },
+          limit: -1,
+          populate: ['indicators', 'indicators.pattern']
+      })
 
-        const template2WithInd = await strapi.query('api::template.template').findOne({
-            where: { id: template2.id },
-            limit: -1,
-            populate: ['indicators', 'indicators.pattern']
-        })
+      template2WithInd.indicators.forEach(async ind => {
+          // console.log('ind', ind.pattern.code)
+          if (parseInt(ind.pattern.code) < 16) {
+              await strapi.query('api::indicator.indicator').update({ where: { id: ind.id }, data: { templates: [template2.id, template3.id]} })
+          }
+      })
+      */
 
-        template2WithInd.indicators.forEach(async ind => {
-            // console.log('ind', ind.pattern.code)
-            if (parseInt(ind.pattern.code) < 16) {
-                await strapi.query('api::indicator.indicator').update({ where: { id: ind.id }, data: { templates: [template2.id, template3.id]} })
-            }
-        })
+      const records4 = await readCSV('vallbas.csv');
+      const template4 = await createTemplate('Ruralitats', 'ruralitats', 'ca')
+      const imported4 = await importRecords(template4, records4, 'ca')
 
-        return { done: true}
+      return { done: true }
 
     }
   })

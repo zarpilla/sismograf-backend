@@ -32,8 +32,9 @@
     },
     "label_category": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::label-category.label-category"
+      "relation": "manyToOne",
+      "target": "api::label-category.label-category",
+      "inversedBy": "labels"
     },
     "visible": {
       "pluginOptions": {

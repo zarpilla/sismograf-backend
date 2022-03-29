@@ -66,6 +66,16 @@
       "relation": "manyToOne",
       "target": "api::questionnaire.questionnaire",
       "inversedBy": "analyses"
+    },
+    "more": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.results"
+    },
+    "labelComments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.label-comments"
     }
   }
 }

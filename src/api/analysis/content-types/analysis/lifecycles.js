@@ -8,8 +8,14 @@ const calculateResilienceLevel = async (data) => {
     const analysis = await strapi.service('api::analysis.analysis').findOne(data.id, {
         populate:  ['results']
     });
-    const average = _.meanBy(analysis.results.filter(r => r.value > 0), (r) => r.value);
-    await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { resilienceLevel: average, _internal: true } })
+    try {
+        const average = _.meanBy(analysis.results.filter(r => r.value > 0), (r) => r.value);
+        await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { resilienceLevel: average, _internal: true } })
+    }
+    catch (e) {
+        await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { resilienceLevel: 0, _internal: true } })
+    }
+    
 }
 
 
@@ -23,7 +29,7 @@ module.exports = {
 
   
     async afterCreate(event) {
-        console.log('beforeCreate', event)
+        // console.log('beforeCreate', event)
         await calculateResilienceLevel(event.result)
     },
 

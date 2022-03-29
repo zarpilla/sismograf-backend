@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_label_comments",
+  "info": {
+    "displayName": "Label Comments",
+    "icon": "arrow-circle-right"
+  },
+  "options": {},
+  "attributes": {
+    "label_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::label-category.label-category"
+    },
+    "comment": {
+      "type": "text"
+    }
+  }
+}

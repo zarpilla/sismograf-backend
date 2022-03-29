@@ -103,6 +103,39 @@
       },
       "type": "boolean",
       "default": true
+    },
+    "buttonText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "domainsText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "moreBlocks": {
+      "displayName": "More Block",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.more-block"
+    },
+    "more_label_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::label-category.label-category",
+      "inversedBy": "more_questionnaires"
     }
   }
 }

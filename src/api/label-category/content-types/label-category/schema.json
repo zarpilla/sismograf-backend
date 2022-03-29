@@ -20,6 +20,28 @@
       "relation": "manyToMany",
       "target": "api::template.template",
       "inversedBy": "label_categories"
+    },
+    "max": {
+      "type": "integer"
+    },
+    "labels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::label.label",
+      "mappedBy": "label_category"
+    },
+    "more_questionnaires": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::questionnaire.questionnaire",
+      "mappedBy": "more_label_categories"
+    },
+    "openResponse": {
+      "type": "boolean",
+      "default": false
+    },
+    "openResponseText": {
+      "type": "string"
     }
   }
 }

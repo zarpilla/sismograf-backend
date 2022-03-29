@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_more_blocks",
+  "info": {
+    "displayName": "More Block",
+    "icon": "fan"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "indicators": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::indicator.indicator"
+    }
+  }
+}
