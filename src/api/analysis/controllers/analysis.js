@@ -97,6 +97,7 @@ const populate = [
   "questionnaire.organization",
   "results",
   "comments",
+  "labels",
   "comments.indicator",
   "results.indicator",
   "results.indicator.indicator_options",
