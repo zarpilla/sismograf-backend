@@ -136,6 +136,24 @@
       "relation": "manyToMany",
       "target": "api::label-category.label-category",
       "inversedBy": "more_questionnaires"
+    },
+    "showPrinciples": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": true
+    },
+    "domainsMustBeCompleted": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": true
     }
   }
 }
