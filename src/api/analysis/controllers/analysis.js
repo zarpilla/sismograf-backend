@@ -208,6 +208,34 @@ module.exports = createCoreController(
         }        
       }
 
+      if (group1 === "label") {
+          const analysis = await strapi.service("api::analysis.analysis").find({
+            filters: {
+              labels: {
+                id: identifier1
+              },
+            },
+            populate: populate,
+            locale: ctx.locale,
+          });
+  
+          g1 = analysis.results;
+      }
+
+      if (group2 === "label") {
+        const analysis = await strapi.service("api::analysis.analysis").find({
+          filters: {
+            labels: {
+              id: identifier2
+            },
+          },
+          populate: populate,
+          locale: ctx.locale,
+        });
+
+        g2 = analysis.results;
+      }
+
       if (group1 === "ruid") {
         const analysis = await strapi.service("api::analysis.analysis").find({
           filters: {
