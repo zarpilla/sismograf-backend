@@ -303,14 +303,14 @@ module.exports = createCoreController(
       })
       */
 
-      const records4 = await readCSV('vallbas.csv');
-      const template4 = await createTemplate('Ruralitats', 'ruralitats', 'ca')
-      const imported4 = await importRecords(template4, records4, 'ca')
+      // const records4 = await readCSV('vallbas.csv');
+      // const template4 = await createTemplate('Ruralitats', 'ruralitats', 'ca')
+      // const imported4 = await importRecords(template4, records4, 'ca')
 
 
-      const records5 = await readCSV('comunitat.csv');
-      const template5 = await createTemplate('Comunitat', 'comunitat', 'ca')
-      const imported5 = await importRecords(template5, records5, 'ca')
+      // const records5 = await readCSV('comunitat.csv');
+      // const template5 = await createTemplate('Comunitat', 'comunitat', 'ca')
+      // const imported5 = await importRecords(template5, records5, 'ca')
 
       return { done: true }
 

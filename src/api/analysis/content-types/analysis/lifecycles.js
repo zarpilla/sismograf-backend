@@ -2,17 +2,18 @@ var _ = require('lodash');
 
 
 const calculateResilienceLevel = async (data) => {
+
+    console.log('calculateResilienceLevel data', data)
     if (data._internal) {
         return
     }        
-    const analysis = await strapi.service('api::analysis.analysis').findOne(data.id, {
-        populate:  ['results']
-    });
+
+
     try {
-        const average = _.meanBy(analysis.results.filter(r => r.value > 0), (r) => r.value);
-        await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { resilienceLevel: average, _internal: true } })
+        await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { _internal: true } })
     }
     catch (e) {
+        console.error(e)
         await strapi.query('api::analysis.analysis').update({ where: { id: data.id }, data: { resilienceLevel: 0, _internal: true } })
     }
     
@@ -20,31 +21,73 @@ const calculateResilienceLevel = async (data) => {
 
 
 module.exports = {
-    
-    // beforeCreate(event) {
-    //   const { data, where, select, populate } = event.params;  
-    //   // let's do a 20% discount everytime
-    //   event.params.data.price = event.params.data.price * 0.8;
-    // },
-
-  
+      
     async afterCreate(event) {
-        // console.log('beforeCreate', event)
         await calculateResilienceLevel(event.result)
     },
 
-    beforeUpdate(event) {
-        // console.log('beforeUpdate', JSON.parse(JSON.stringify(event.params.data)))
-        // console.log('beforeUpdate', JSON.parse(JSON.stringify(event.params.data.results)))
+    async beforeUpdate(event) {
+        
+        const id = event?.params?.where?.id
 
-        // const average = _.meanBy(event.params.data.results, (r) => r.value);
-        //event.params.data.resilienceLevel = average
-        // data.resilienceLevel = 4.4        
-        // do something to the result;
-    },
-    async afterUpdate(event) {
-        await calculateResilienceLevel(event.params.data)
-    },
+        if (!id) {
+            return
+        }
 
-    
+        const analysis = await strapi.service('api::analysis.analysis').findOne(id, {
+            populate:  ['results', 'results.indicator', 'results.indicator.pattern', 'results.indicator.pattern.principle', 'results.indicator.pattern.principle.domain']
+        });
+
+        analysis.results.forEach((r) => {
+            if (r.indicator) {
+              r.analysisId = analysis.uid;
+              // r.templateId = analysis.template?.id;
+              // r.templateName = analysis.template?.name;
+              // r.questionnaireId = analysis.questionnaire?.id;
+              // r.questionnaireName = analysis.questionnaire?.name;
+              r.domainId = r.indicator.pattern.principle.domain.id;
+              r.domainName = r.indicator.pattern.principle.domain.name;
+              r.domainDescription = r.indicator.pattern.principle.domain.description;
+              r.principleId = r.indicator.pattern.principle.id;
+              r.principleName = r.indicator.pattern.principle.name;
+              r.patternId = r.indicator.pattern.id;
+              r.patternName = r.indicator.pattern.name;
+              // r.pattern = r.indicator.pattern
+              r.indicatorId = r.indicator.id;
+              r.indicatorName = r.indicator.question;
+            //   r.responseValue = r.indicator.indicator_options.find(
+            //     (o) => o.value === r.value
+            //   ).name;
+              r.comments = analysis.comments?.find(
+                (c) => c.indicator && c.indicator.id === r.indicator.id
+              )?.comment;
+              r.resilienceLevel = r.value
+            }
+            delete r.indicator;
+        });
+
+
+        const summaryByDomain = _(analysis.results)
+        .groupBy("domainId")
+        .map((domainRows, id) => ({
+          domainDescription: id,
+          resilienceLevel: _.meanBy(domainRows, "resilienceLevel"),
+          principles: _(domainRows)
+            .groupBy("principleId")
+            .map((principleRows, id) => ({
+              principleName: id,
+              resilienceLevel: _.meanBy(principleRows, "resilienceLevel"),
+              patterns: _(principleRows)
+                .groupBy("patternId")
+                .map((patternsRows, id) => ({
+                  patternName: id,
+                  resilienceLevel: _.meanBy(patternsRows, "resilienceLevel"),
+                })),
+            }))
+            .value(),
+        }))
+        .value();
+        const resilienceLevel = _.meanBy(summaryByDomain, "resilienceLevel")        
+        event.params.data.resilienceLevel = resilienceLevel
+    }    
 };
