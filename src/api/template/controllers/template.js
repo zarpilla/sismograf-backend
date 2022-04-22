@@ -38,6 +38,13 @@ const shuffle = (array) => {
 const levels = {
     'es': ['Resistencia', 'Determinación', 'Orden', 'Progreso', 'Sostenibilidad', 'Restauración', 'Reconciliación', 'Regeneración'],
     'ca': ['Resistència', 'Determinació', 'Ordre', 'Progrés', 'Sostenibilitat', 'Restauració', 'Reconciliació', 'Regeneració'],
+    'en': ['Resistence', 'Determination', 'Order', 'Progress', 'Sustainability', 'Restoration', 'Reconcilliaton', 'Regeneration'],
+}
+
+const principleTypes = {
+  'es': ['SER', 'FUNCIÓN', 'VOLUNTAD'],
+  'ca': ['SER', 'FUNCIÓ', 'VOLUNTAT'],
+  'en': ['BEING', 'FUNCTION', 'WILL'],
 }
 
 const createTemplate = async (templateName, templateSlug, locale) => {
@@ -71,9 +78,9 @@ const importRecords = async (templateEntry, records, locale) => {
         await strapi.query('api::resilience-level.resilience-level').create( { data: { locale: locale, publishedAt: new Date(), name: levels[locale][i], value: i + 1, principle: null, code: parseInt(i) + 1 } });
     }
     
-    const principleType = await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: 'SER', code: '1' } });
-    await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: 'FUNCIÓN', code: '2' } });
-    await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: 'VOLUNTAD', code: '3' } });
+    const principleType = await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: principleTypes[locale][0], code: '1' } });
+    await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: principleTypes[locale][1], code: '2' } });
+    await strapi.query('api::principle-type.principle-type').create( { data: { locale: locale, publishedAt: new Date(), name: principleTypes[locale][2], code: '3' } });
     
     for (var i = 0; i < records.length; i++) {
         
@@ -312,7 +319,18 @@ module.exports = createCoreController(
       // const template5 = await createTemplate('Comunitat', 'comunitat', 'ca')
       // const imported5 = await importRecords(template5, records5, 'ca')
 
-      return { done: true }
+      try {
+        if (ctx.params && ctx.params.name && ctx.params.lang) {        
+          const records = await readCSV(`${ctx.params.name}.csv`);
+          const template = await createTemplate(ctx.params.name, ctx.params.name, ctx.params.lang)
+          const imported = await importRecords(template, records, ctx.params.lang)
+          return { done: true }
+        }
+      }
+      catch {
+        return { done: false, error: true }
+      }      
+      return { done: false, error: false }
 
     }
   })

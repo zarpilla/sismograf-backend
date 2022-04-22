@@ -21,7 +21,7 @@ module.exports = {
     {
       // Path defined with a URL parameter
       method: "GET",
-      path: "/templates/import/",
+      path: "/templates/import/:name/:lang",
       handler: "template.import",
     }
   ],
