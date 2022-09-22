@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 const calculateResilienceLevel = async (data) => {
 
-    console.log('calculateResilienceLevel data', data)
+    // console.log('calculateResilienceLevel data', data)
     if (data._internal) {
         return
     }        

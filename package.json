@@ -10,9 +10,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.1.8",
-    "@strapi/plugin-users-permissions": "4.1.8",
-    "@strapi/strapi": "4.1.8",
+    "@strapi/plugin-i18n": "4.3.9",
+    "@strapi/plugin-users-permissions": "4.3.9",
+    "@strapi/strapi": "4.3.9",
     "axios": "^0.25.0",
     "csv-parse": "^5.0.4",
     "fs": "^0.0.1-security",
