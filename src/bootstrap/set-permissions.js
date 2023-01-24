@@ -59,6 +59,8 @@ async function importSeedData() {
         "api::label-category.label-category": ["find", "findOne"],        
         "api::organization.organization": ["find", "findOne"],
         "api::questionnaire.questionnaire": ["find", "findOne"],
+        "api::application.application": ["find", "findOne"],
+        "api::text.text": ["find"],
       }
     );
 
@@ -77,6 +79,8 @@ async function importSeedData() {
         "api::label-category.label-category": ["find", "findOne"],
         "api::organization.organization": ["find", "findOne"],
         "api::questionnaire.questionnaire": ["find", "findOne"],
+        "api::application.application": ["find", "findOne"],
+        "api::text.text": ["find"],
       }
     );
 }

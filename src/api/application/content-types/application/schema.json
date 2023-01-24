@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.footer"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "emptyEmail": {
+      "type": "string"
+    },
+    "questionnaire": {
+      "type": "string"
+    }
+  }
+}
