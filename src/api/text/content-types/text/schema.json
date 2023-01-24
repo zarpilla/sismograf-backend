@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "texts",
+  "info": {
+    "singularName": "text",
+    "pluralName": "texts",
+    "displayName": "Text",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text_ca": {
+      "type": "text"
+    },
+    "text_en": {
+      "type": "text"
+    },
+    "text_es": {
+      "type": "text"
+    },
+    "key": {
+      "type": "uid",
+      "targetField": "text_ca"
+    }
+  }
+}

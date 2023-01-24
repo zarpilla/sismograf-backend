@@ -76,6 +76,9 @@
       "type": "component",
       "repeatable": true,
       "component": "components.label-comments"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
