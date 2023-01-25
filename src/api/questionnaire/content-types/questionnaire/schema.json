@@ -178,6 +178,12 @@
         }
       },
       "type": "string"
+    },
+    "applications": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::application.application",
+      "mappedBy": "questionnaires"
     }
   }
 }
