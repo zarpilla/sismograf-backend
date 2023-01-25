@@ -42,6 +42,12 @@
     },
     "openResponseText": {
       "type": "string"
+    },
+    "questionnaires": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::questionnaire.questionnaire",
+      "inversedBy": "label_categories"
     }
   }
 }

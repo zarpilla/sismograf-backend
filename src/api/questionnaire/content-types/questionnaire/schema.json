@@ -184,6 +184,12 @@
       "relation": "manyToMany",
       "target": "api::application.application",
       "mappedBy": "questionnaires"
+    },
+    "label_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::label-category.label-category",
+      "inversedBy": "questionnaires"
     }
   }
 }
