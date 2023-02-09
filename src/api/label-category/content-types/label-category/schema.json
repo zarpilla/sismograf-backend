@@ -48,6 +48,9 @@
       "relation": "manyToMany",
       "target": "api::questionnaire.questionnaire",
       "inversedBy": "label_categories"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

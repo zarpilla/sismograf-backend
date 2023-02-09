@@ -189,7 +189,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::label-category.label-category",
-      "inversedBy": "questionnaires"
+      "mappedBy": "questionnaires"
     }
   }
 }
