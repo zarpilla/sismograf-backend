@@ -15,8 +15,8 @@ module.exports = {
     {
       // Path defined with a URL parameter
       method: "GET",
-      path: "/analyses/compare/:g1/:g2",
-      handler: "analysis.findWithResults",
+      path: "/analyses/wheel/:group1",
+      handler: "analysis.getWheel",
     },
     {
       // Path defined with a URL parameter
