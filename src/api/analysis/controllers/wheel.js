@@ -230,7 +230,7 @@ module.exports = {
       height = 875,
       radius = Math.min(width, height) / 2 - 10;
 
-    var svg = d3n.createSVG(width, height).append("g");
+    var svg = d3n.createSVG(width, height).attr("x", "0").attr("y", "0").attr("viewBox", `0 0 ${width} ${height}`).append("g");
 
     // var svg = d3.select("#" + this.elementId).append("svg").append("g");
 
