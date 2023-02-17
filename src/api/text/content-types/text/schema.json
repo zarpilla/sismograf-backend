@@ -24,6 +24,15 @@
     "key": {
       "type": "uid",
       "targetField": "text_ca"
+    },
+    "html_ca": {
+      "type": "richtext"
+    },
+    "html_en": {
+      "type": "richtext"
+    },
+    "html_es": {
+      "type": "richtext"
     }
   }
 }
