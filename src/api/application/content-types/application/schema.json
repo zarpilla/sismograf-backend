@@ -68,10 +68,10 @@
       "target": "api::questionnaire.questionnaire",
       "inversedBy": "applications"
     },
-    "guide_questionnaire": {
+    "guide_template": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::questionnaire.questionnaire"
+      "target": "api::template.template"
     }
   }
 }
