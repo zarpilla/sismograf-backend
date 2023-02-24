@@ -67,6 +67,11 @@
       "relation": "manyToMany",
       "target": "api::questionnaire.questionnaire",
       "inversedBy": "applications"
+    },
+    "guide_questionnaire": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::questionnaire.questionnaire"
     }
   }
 }
