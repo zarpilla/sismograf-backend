@@ -1167,7 +1167,7 @@ module.exports = {
       .createSVG(width, height)
       .attr("x", "0")
       .attr("y", "0")
-      .attr("viewBox", `0 0 ${width} ${height2}`)
+      .attr("viewBox", `0 0 ${width} ${height}`)
       .append("g");
 
     svg.append("defs").append("style").attr("type", "text/css");
