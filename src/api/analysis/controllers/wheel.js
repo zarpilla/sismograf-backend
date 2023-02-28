@@ -10,7 +10,7 @@ const toPct = (value) => {
 
 const textValue = (texts, locale, key) => {
   const t = texts.find(t => t.key === key)
-  // console.log('texts', texts, locale, key)
+  console.log('texts', t, locale, key)
   if (t) {
     return t[`text_${locale}`]
   }
@@ -1160,13 +1160,14 @@ module.exports = {
 
     var width = 1300,
       height = 1300,
+      height2 = 875,
       radius = 875 / 2;
 
     var svg = d3n
       .createSVG(width, height)
       .attr("x", "0")
       .attr("y", "0")
-      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("viewBox", `0 0 ${width} ${height2}`)
       .append("g");
 
     svg.append("defs").append("style").attr("type", "text/css");

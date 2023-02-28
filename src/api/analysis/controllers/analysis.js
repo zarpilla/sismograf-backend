@@ -376,8 +376,9 @@ module.exports = createCoreController(
       const data = await this.findWithResults(ctx)
       ctx.type = "image/svg+xml"
       if (ctx.query.description) {
-        const texts = await strapi.service("api::text.text").find({})
-        return await getWheelImageWithDescription(data, ctx, texts.results)
+        const texts = await strapi.db.query("api::text.text").findMany({ limit: 999 })
+        console.log('texts', texts)
+        return await getWheelImageWithDescription(data, ctx, texts)
       }
       return await getWheelImage(data, ctx)      
     },
