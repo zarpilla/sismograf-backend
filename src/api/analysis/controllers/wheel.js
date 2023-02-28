@@ -10,6 +10,7 @@ const toPct = (value) => {
 
 const textValue = (texts, locale, key) => {
   const t = texts.find(t => t.key === key)
+  // console.log('texts', texts, locale, key)
   if (t) {
     return t[`text_${locale}`]
   }
@@ -37,7 +38,7 @@ module.exports = {
         }) => item
       );
       a.results.forEach((r) => {
-        r.locale = ctx.locale;
+        r.locale = ctx.locale || ctx.query.locale;
         pivotData.push(r);
       });
     });
@@ -944,6 +945,8 @@ module.exports = {
   async getWheelImageWithDescription(data, ctx, texts) {
     const pivotData = [];
 
+    console.log('getWheelImageWithDescription', ctx.query.locale)
+
     const analysis = [];
     data.g1.analyses.forEach((a) => {
       analysis.push(a);
@@ -961,7 +964,7 @@ module.exports = {
         }) => item
       );
       a.results.forEach((r) => {
-        r.locale = ctx.locale;
+        r.locale = ctx.locale || ctx.query.locale;
         pivotData.push(r);
       });
     });
@@ -1346,9 +1349,9 @@ module.exports = {
     const globalValue = (texts, ctx) => {
       return [
         {
-          label: textValue(texts, ctx.locale, 'global'),
+          label: textValue(texts, ctx.locale || ctx.query.locale, 'global'),
           value: 100,
-          description: textValue(texts, ctx.locale, 'global'),
+          description: textValue(texts, ctx.locale || ctx.query.locale, 'global'),
         },
       ];
     };
@@ -1449,7 +1452,7 @@ module.exports = {
       .attr("dy", "7px")
       .text((d, i) => {
         return i === 0
-          ? "Percentatge general de cada mirada o dimensió"
+          ? textValue(texts, ctx.locale || ctx.query.locale, "percentatge-general-de-cada-mirada-o-dimensio")
           : "";
       })
       .attr("transform", function (d) {
@@ -1487,7 +1490,7 @@ module.exports = {
       .attr("dy", "7px")
       .text((d, i) => {
         return i === 1
-          ? "Paradigma dominant"
+          ? textValue(texts, ctx.locale || ctx.query.locale, "paradigma-dominant")
           : "";
       })
       .attr("transform", function (d) {
@@ -1547,7 +1550,7 @@ module.exports = {
       .attr("dy", "7px")
       .text((d, i) => {
         return i === 1
-          ? "El color indica el paradigma de cada principi i mirada"
+          ? textValue(texts, ctx.locale || ctx.query.locale, "el-color-indica-el-paradigma-de-cada-principi-i-mirada")
           : "";
       })
       .attr("transform", function (d) {
@@ -1652,7 +1655,7 @@ module.exports = {
       .attr("dy", "7px")
       .text((d, i) => {
         return i === 6
-          ? "Percentatge específic de cada mirada o dimensió"
+          ? textValue(texts, ctx.locale || ctx.query.locale, "percentatge-especific-de-cada-mirada-o-dimensio")
           : "";
       })
       .attr("transform", function (d) {
@@ -1729,7 +1732,7 @@ module.exports = {
       .attr("dx", "7px")
       .text((d, i) => {
         return i === 2
-          ? "Punt palanca destacat i color del paradigma"
+          ? textValue(texts, ctx.locale || ctx.query.locale, "punt-palanca-destacat-i-color-del-paradigma")
           : "";
       })
       .attr("transform", function (d) {
