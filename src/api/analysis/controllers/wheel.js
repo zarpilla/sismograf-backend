@@ -945,8 +945,6 @@ module.exports = {
   async getWheelImageWithDescription(data, ctx, texts) {
     const pivotData = [];
 
-    console.log('getWheelImageWithDescription', ctx.query.locale)
-
     const analysis = [];
     data.g1.analyses.forEach((a) => {
       analysis.push(a);
@@ -1113,29 +1111,25 @@ module.exports = {
       "rgba(59, 65, 116, 0.6)",
       "rgba(59, 65, 116, 0.6)",
     ];
-    // const colors03 = [
-    //   "rgba(167, 31, 31, 0.3)",
-    //   "rgba(206, 84, 46, 0.3)",
-    //   "rgba(218, 131, 68, 0.3)",
-    //   "rgba(225, 187, 89, 0.3)",
-    //   "rgba(95, 146, 95, 0.3)",
-    //   "rgba(118, 179, 168, 0.3)",
-    //   "rgba(80, 141, 168, 0.3)",
-    //   "rgba(59, 65, 116, 0.3)",
-    //   "rgba(59, 65, 116, 0.3)",
-    // ];
+
 
     const globalLevel = () => {
       return toPct(chartSummary.resilienceLevel);
     };
 
-    const bgrColor = (value) => {
+    const bgrColor = (value, i) => {
+      if (i > 0) {
+        return "rgba(208, 204, 193, 1)"
+      }
       if (value == null || value == undefined) return colors06[3];
       const idx = parseInt(value / 12.5);
       return colors06[idx];
     };
 
-    const barColor = (value) => {
+    const barColor = (value, i) => {
+      if (i > 0) {
+        return "#B2AEA4;"
+      }
       if (value == null) return colors06[3];
       const idx = parseInt(value / 12.5);
       return colors06[idx];
@@ -1147,9 +1141,12 @@ module.exports = {
       return colors01[idx];
     };
 
-    const alertColor = (value) => {
-      if (value == null) return "transparent";
+    const alertColor = (value, i) => {      
+      if (value == null) return "transparent";      
       if (value < 38) {
+        if (i > 2) {
+          return "#C1BDB3;"
+        }
         const idx = parseInt(value / 12.5);
         return colors[idx];
       }
@@ -1270,7 +1267,7 @@ module.exports = {
     var colorQuarters = d3.scale
       .ordinal()
       .domain(domainsData().map((d) => d.name))
-      .range(domainsData().map((d) => bgrColor(d.value)));
+      .range(domainsData().map((d, i) => bgrColor(d.value, i)));
 
     const domains = () => {
       var labels = colorQuarters.domain();
@@ -1289,7 +1286,7 @@ module.exports = {
       .domain(quartersData().map((d) => d.name))
       .range(
         quartersData().map((d, i) =>
-          i % 2 === 0 ? barColor(d.value) : "transparent"
+          i % 2 === 0 ? barColor(d.value, i) : "transparent"
         )
       );
 
@@ -1330,7 +1327,7 @@ module.exports = {
       .range(
         principlesValues()
           .filter((pv, i) => i % 2 === 0)
-          .map((pv) => bgrColor(pv.value))
+          .map((pv, i) => bgrColor(pv.value, i < 3 ? 0 : i))
       );
 
     const principles = () => {
@@ -1386,7 +1383,7 @@ module.exports = {
       ])
       .range(
         principlesValues().map((pv, i) =>
-          i % 2 === 0 ? barColor(pv.value) : "transparent"
+          i % 2 === 0 ? barColor(pv.value, i < 6 ? 0 : i) : "transparent"
         )
       );
 
@@ -1400,7 +1397,7 @@ module.exports = {
       .range(
         principlesValues()
           .filter((pv, i) => i % 2 === 0)
-          .map((pv) => alertColor(pv.value))
+          .map((pv, i) => alertColor(pv.value, i))
       );
 
     var style = svg.select("style");
