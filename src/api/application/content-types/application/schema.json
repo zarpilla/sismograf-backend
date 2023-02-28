@@ -72,6 +72,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::template.template"
+    },
+    "guide_analysis": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::analysis.analysis"
     }
   }
 }
