@@ -10,7 +10,6 @@ const toPct = (value) => {
 
 const textValue = (texts, locale, key) => {
   const t = texts.find(t => t.key === key)
-  console.log('texts', t, locale, key)
   if (t) {
     return t[`text_${locale}`]
   }
