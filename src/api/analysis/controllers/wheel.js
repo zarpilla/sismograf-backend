@@ -1118,7 +1118,7 @@ module.exports = {
 
     const bgrColor = (value, i) => {
       if (i > 0) {
-        return "rgba(208, 204, 193, 1)"
+        return "rgba(208, 204, 193, 0.8)"
       }
       if (value == null || value == undefined) return colors06[3];
       const idx = parseInt(value / 12.5);
@@ -1532,7 +1532,7 @@ module.exports = {
         var posB = arc6.centroid(d); // line break: we use the other arc generator that has been built only for that
         var posC = arc6.centroid(d); // Label position = almost the same as posB
         var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2; // we need the angle to see if the X position will be at the extreme right or extreme left
-        posC[0] = radius * 0.94 ; // multiply by 1 or -1 to put it on the right or on the left
+        posC[0] = 30 + radius * 0.96 * (midangle < Math.PI ? 1 : -1) ; // multiply by 1 or -1 to put it on the right or on the left
         // posC[0] = 550
         // posC[1] = 0
         return [posA, posB, posC];
@@ -1544,7 +1544,7 @@ module.exports = {
       .style("font-family", "Athletics")
       .style("font-size", "18px")
       .style("fill", "#E87A70")
-      .attr("dy", "7px")
+      .attr("dy", "-7px")
       .text((d, i) => {
         return i === 1
           ? textValue(texts, ctx.locale || ctx.query.locale, "el-color-indica-el-paradigma-de-cada-principi-i-mirada")
@@ -1553,7 +1553,7 @@ module.exports = {
       .attr("transform", function (d) {
         var pos = arc6.centroid(d);
         var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-        pos[0] = radius * 0.96 * (midangle < Math.PI ? 1 : -1);
+        pos[0] = 30 + radius * 0.96 * (midangle < Math.PI ? 1 : -1);
         return "translate(" + pos + ") rotate(45)";
       })
       .style("text-anchor", "start");
@@ -1638,8 +1638,7 @@ module.exports = {
         var posC = arc6.centroid(d); // Label position = almost the same as posB
         var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2; // we need the angle to see if the X position will be at the extreme right or extreme left
         posC[0] = radius * 0.94 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-        // posC[0] = 550
-        // posC[1] = 0
+        // posC[1] = 10 + posC[1]
         return [posA, posB, posC];
       });
 
@@ -1659,6 +1658,7 @@ module.exports = {
         var pos = arc6.centroid(d);
         var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+        pos[1] = 10 + pos[1]
         return "translate(" + pos + ") rotate(45)";
       })
       .style("text-anchor", "start");
