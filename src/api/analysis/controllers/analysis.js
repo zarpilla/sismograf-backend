@@ -122,7 +122,7 @@ module.exports = createCoreController(
         .service("api::analysis.analysis")
         .findOne(id, {
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
       const analysisWithResults = await transformAnalysisResults([analysis]);
@@ -150,7 +150,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g1 = analysis.results;
@@ -163,7 +163,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
@@ -182,7 +182,7 @@ module.exports = createCoreController(
               },
             },
             populate: populate,
-            locale: ctx.locale,
+            locale: ctx.locale || ctx.query.locale,
           });
   
           g1 = analysis.results;
@@ -203,7 +203,7 @@ module.exports = createCoreController(
               },
             },
             populate: populate,
-            locale: ctx.locale,
+            locale: ctx.locale || ctx.query.locale,
           });
   
           g2 = analysis.results;
@@ -218,7 +218,7 @@ module.exports = createCoreController(
               },
             },
             populate: populate,
-            locale: ctx.locale,
+            locale: ctx.locale || ctx.query.locale,
           });
   
           g1 = analysis.results;
@@ -232,7 +232,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
@@ -246,7 +246,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g1 = analysis.results;
@@ -259,7 +259,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
@@ -273,7 +273,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g1 = analysis.results;
@@ -286,7 +286,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
@@ -300,7 +300,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g1 = analysis.results;
@@ -314,7 +314,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
@@ -330,7 +330,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g1 = analysis.results;
@@ -346,7 +346,7 @@ module.exports = createCoreController(
             },
           },
           populate: populate,
-          locale: ctx.locale,
+          locale: ctx.locale || ctx.query.locale,
         });
 
         g2 = analysis.results;
