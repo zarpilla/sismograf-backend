@@ -77,6 +77,26 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::analysis.analysis"
+    },
+    "guide_more_info": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean"
+    },
+    "guide_more_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
