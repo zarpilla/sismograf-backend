@@ -12,6 +12,7 @@
   "dependencies": {
     "@strapi/plugin-i18n": "4.3.9",
     "@strapi/plugin-users-permissions": "4.3.9",
+    "@strapi/provider-email-sendgrid": "^4.8.1",
     "@strapi/strapi": "4.3.9",
     "axios": "^0.25.0",
     "csv-parse": "^5.0.4",

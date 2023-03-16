@@ -79,6 +79,9 @@
     },
     "name": {
       "type": "string"
+    },
+    "sentByEmail": {
+      "type": "boolean"
     }
   }
 }
