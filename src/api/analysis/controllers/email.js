@@ -81,7 +81,7 @@ module.exports = {
         .replace(/{FRONT_URL}/gi, process.env.FRONT_URL);
 
       await strapi.plugins["email"].services.email.send({
-        to: "jordi@resilience.earth", //analysis.email,
+        to: analysis.email,
         from: emailFrom,
         subject: subject,
         html: html,
