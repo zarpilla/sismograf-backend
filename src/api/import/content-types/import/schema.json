@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "imports",
+  "info": {
+    "singularName": "import",
+    "pluralName": "imports",
+    "displayName": "Import"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "template": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Initial",
+        "Doing",
+        "Imported"
+      ]
+    }
+  }
+}
