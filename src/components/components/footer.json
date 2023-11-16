@@ -1,7 +1,8 @@
 {
   "collectionName": "components_components_footers",
   "info": {
-    "displayName": "footer"
+    "displayName": "footer",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,16 +10,28 @@
       "type": "string"
     },
     "logo1": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "link2": {
       "type": "string"
     },
     "logo2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link3": {
+      "type": "string"
+    },
+    "logo3": {
       "allowedTypes": [
         "images"
       ],
