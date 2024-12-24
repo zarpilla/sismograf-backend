@@ -32,6 +32,27 @@
       "type": "string"
     },
     "logo3": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link4": {
+      "type": "string"
+    },
+    "logo4": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link5": {
+      "type": "string"
+    },
+    "logo5": {
       "allowedTypes": [
         "images"
       ],
